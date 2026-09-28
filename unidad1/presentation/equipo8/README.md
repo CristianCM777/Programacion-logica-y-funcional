@@ -69,14 +69,15 @@ val it: int list = [4; 16; 36; 64; 100]
 
 ## Bibliografía (IEEE)
 
-[1] G. Tan, "A brief history of functional programming," Penn State University, 
-    [En línea]. Disponible en: https://www.cse.psu.edu/~gxt29/historyOfFP/historyOfFP.html.
-[2] I. V. Barrios, "Programación funcional," Platzi, [En línea]. Disponible en: 
-    https://platzi.com/blog/programacion-funcional.
-[3] Coco Solution, "Introducción a la programación funcional," [En línea]. 
-    Disponible en: https://cocosolution.com/blog/programacion-funcional. 
-[4] Microsoft, "F# language reference," [En línea]. Disponible en: 
-    https://docs.microsoft.com/en-us/dotnet/fsharp/.
+Contexto e historia del lenguaje (rol 1): [`contexto-historia.md`](contexto-historia.md)
+
+1. P. Hudak, "Conception, evolution, and application of functional programming languages," *ACM Computing Surveys*, vol. 21, no. 3, pp. 359–411, 1989, doi: [10.1145/72551.72554](https://doi.org/10.1145/72551.72554).
+2. J. McCarthy, "History of LISP," *ACM SIGPLAN Notices*, vol. 13, no. 8, pp. 217–223, 1978, doi: [10.1145/960118.808387](https://doi.org/10.1145/960118.808387).
+3. D. Syme, "The early history of F#," *Proc. ACM Program. Lang.*, vol. 4, no. HOPL, art. 75, 2020, doi: [10.1145/3386325](https://doi.org/10.1145/3386325).
+4. Microsoft, "F# documentation," Microsoft Learn. [En línea]. Disponible en: https://learn.microsoft.com/dotnet/fsharp/
+5. G. Tan, "A brief history of functional programming," Penn State University. [En línea]. Disponible en: https://www.cse.psu.edu/~gxt29/historyOfFP/historyOfFP.html
+6. I. V. Barrios, "Programación funcional," Platzi. [En línea]. Disponible en: https://platzi.com/blog/programacion-funcional *(divulgación)*
+7. Coco Solution, "Introducción a la programación funcional." [En línea]. Disponible en: https://cocosolution.com/blog/programacion-funcional *(divulgación)*
 
 ---
 
