@@ -126,3 +126,32 @@ clojure -M -m main
 | `Error building classpath` | Sin internet o proxy — el CLI descarga de Maven Central |
 | `WARNING: Implicit use of clojure.main ... is deprecated` | Antepón `-M` a `-e` / `-m` / `-` (p. ej. `clj -M -e '...'`) |
 | `NullPointerException ... "f" is null` con `-m` | El namespace no tiene `(defn -main [& _] ...)` |
+
+---
+
+## ANEXO — Instalación en macOS (Apple Silicon / Intel)
+
+> Para practicar localmente en tu Mac. Las entregas del curso se graban en el
+> nodo Ubuntu de AWS Academy; en macOS las versiones pueden variar respecto a
+> las de la guía principal.
+
+Requisito previo (una sola vez): Xcode Command Line Tools y [Homebrew](https://brew.sh).
+
+```bash
+xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+```bash
+brew install openjdk@21 rlwrap
+sudo ln -sfn "$(brew --prefix openjdk@21)/libexec/openjdk.jdk" \
+  /Library/Java/JavaVirtualMachines/openjdk-21.jdk
+brew install clojure/tools/clojure
+java -version
+clj -M -e '(println (clojure-version))'
+```
+
+| Síntoma | Causa / solución |
+|---------|------------------|
+| `Unable to locate a Java Runtime` | Falta el `ln -sfn` de arriba |
+| `clojure` de `brew install clojure` (sin tap) | Funciona, pero el tap oficial `clojure/tools` sigue las versiones del CLI |

@@ -129,3 +129,29 @@ swipl familia.pl
 | Versión 8.x instalada | Estás en Ubuntu 22.04 — usa Opción B o migra a 24.04 |
 | `library(clpfd)` no existe | Instalaste un paquete mínimo; `sudo apt install swi-prolog` (no `swi-prolog-core`) |
 | `-g "..., X #= ..."`: `Syntax error: Operator expected` | Un solo `-g` no ve los operadores de clpfd; usa dos `-g` o un archivo `.pl` con `:- use_module(library(clpfd)).` |
+
+---
+
+## ANEXO — Instalación en macOS (Apple Silicon / Intel)
+
+> Para practicar localmente en tu Mac. Las entregas del curso se graban en el
+> nodo Ubuntu de AWS Academy; en macOS las versiones pueden variar respecto a
+> las de la guía principal.
+
+Requisito previo (una sola vez): Xcode Command Line Tools y [Homebrew](https://brew.sh).
+
+```bash
+xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+```bash
+brew install swi-prolog
+swipl --version
+swipl -g "use_module(library(clpfd))" -g "X #= 2+3, writeln(X)" -t halt   # → 5
+```
+
+| Síntoma | Causa / solución |
+|---------|------------------|
+| `swipl` abre pero sin editor gráfico | Normal con Homebrew; el paquete `.dmg` de swi-prolog.org trae la app con GUI |
+| Versión distinta a la del nodo (9.0.4) | Homebrew instala la estable más reciente; el código del curso es compatible |

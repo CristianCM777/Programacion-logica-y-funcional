@@ -111,3 +111,41 @@ compilador lo rechaza — abstracción garantizada en tiempo de compilación.
 | `ocaml --version` dice 4.14 y esperabas 5.x | El switch default es 4.14.1; crea el switch 5.x (arriba) y `eval $(opam env)` |
 | `opam switch create 5.2.1` muere con `Killed` | Sin RAM al compilar; usa el swap del nodo o quédate en 4.14.1 |
 | Compilación lenta de opam en 1 GB RAM | Agrega swap (ver [03_erlang.md](03_erlang.md) §B.1) |
+
+---
+
+## ANEXO — Instalación en macOS (Apple Silicon / Intel)
+
+> Para practicar localmente en tu Mac. Las entregas del curso se graban en el
+> nodo Ubuntu de AWS Academy; en macOS las versiones pueden variar respecto a
+> las de la guía principal.
+
+Requisito previo (una sola vez): Xcode Command Line Tools y [Homebrew](https://brew.sh).
+
+```bash
+xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+```bash
+brew install opam
+opam init --auto-setup -y
+eval $(opam env)
+opam install -y dune utop
+ocaml --version
+dune --version
+```
+
+> **Ojo:** en macOS, `opam init` crea el switch default con la **OCaml 5.x**
+> más reciente (no la 4.14.1 de Ubuntu). Para igualar al nodo:
+>
+> ```bash
+> opam switch create 4.14.1
+> eval $(opam env)
+> opam install -y dune utop
+> ```
+
+| Síntoma | Causa / solución |
+|---------|------------------|
+| `ocaml: command not found` en terminal nueva | Aceptaste no modificar `~/.zshrc`; añade `eval $(opam env)` |
+| `opam init` se queja de `gpatch`/`gmake` | `brew install gpatch make` y reintenta |

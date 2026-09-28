@@ -253,3 +253,39 @@ la VPC, que es lo que permite la regla del security group.
 | `erl` sigue mostrando OTP 25 tras instalar 26 | No se aplicó el `activate`; abre shell nueva o `source ~/otp/26.2.5/activate` |
 | `ssh host 'erl ...'` usa OTP 25 aunque interactivo dé 26 | El `.bashrc` no corre en shells no interactivas; antepón `source ~/otp/26.2.5/activate &&` |
 | Quiero varias versiones OTP | `kerl list installations` y `activate` la que necesites |
+
+---
+
+## ANEXO — Instalación en macOS (Apple Silicon / Intel)
+
+> Para practicar localmente en tu Mac. Las entregas del curso se graban en el
+> nodo Ubuntu de AWS Academy; en macOS las versiones pueden variar respecto a
+> las de la guía principal.
+
+Requisito previo (una sola vez): Xcode Command Line Tools y [Homebrew](https://brew.sh).
+
+```bash
+xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+```bash
+brew install erlang rebar3
+erl -noshell -eval 'io:format("~s~n",[erlang:system_info(otp_release)]), halt().'
+rebar3 version
+```
+
+Para fijar **OTP 26** igual que en el nodo (opcional), usa `asdf`:
+
+```bash
+brew install asdf autoconf openssl@3 wxwidgets
+export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=$(brew --prefix openssl@3)"
+asdf plugin add erlang
+asdf install erlang 26.2.5
+asdf set -u erlang 26.2.5     # asdf ≥ 0.16
+```
+
+| Síntoma | Causa / solución |
+|---------|------------------|
+| `brew install erlang` da OTP 27/28 | Es la versión actual de Homebrew; para OTP 26 usa la ruta con `asdf` |
+| `crypto` no carga (asdf) | Faltó `--with-ssl=$(brew --prefix openssl@3)` al compilar |

@@ -148,3 +148,34 @@ cabal run
 | `cabal update` tarda mucho | Normal la primera vez (descarga el índice completo de Hackage) |
 | Linker: `cannot find -lgmp` | `sudo apt install libgmp-dev` |
 | Quiero otra versión de GHC | `ghcup install ghc <ver>` y `ghcup set ghc <ver>` |
+
+---
+
+## ANEXO — Instalación en macOS (Apple Silicon / Intel)
+
+> Para practicar localmente en tu Mac. Las entregas del curso se graban en el
+> nodo Ubuntu de AWS Academy; en macOS las versiones pueden variar respecto a
+> las de la guía principal.
+
+Requisito previo (una sola vez): Xcode Command Line Tools y [Homebrew](https://brew.sh).
+
+```bash
+xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+GHCup es el mismo instalador que en Ubuntu:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+source ~/.ghcup/env
+ghcup install cabal 3.16.1.0 --set    # ¡no `latest`! (ver Solución de problemas)
+ghc --version
+cabal --version
+```
+
+| Síntoma | Causa / solución |
+|---------|------------------|
+| Error de linker / `clang` no encontrado | Faltan las Command Line Tools: `xcode-select --install` |
+| `ghc` no aparece en terminal nueva | Agrega `source ~/.ghcup/env` a `~/.zshrc` |
+| Evita `brew install ghc` | Mezcla versiones con GHCup; usa solo GHCup |

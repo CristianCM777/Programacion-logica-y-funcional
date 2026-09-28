@@ -189,3 +189,29 @@ asciinema cat archivo.cast              # reimprime la sesión sin timing (como 
 | La URL de la grabación ya no existe | No se reclamó dentro de los **7 días** — asciinema.org la eliminó; vuelve a grabar y esta vez corre `asciinema auth` antes de subir |
 | El archivo `.cast` es enorme | Evita `cat` de archivos grandes o procesos interactivos largos (`htop`, `top`) durante la grabación; usa `-i 2` |
 | Quiero borrar una grabación pública | Solo si estás autenticado: entra a la URL → **Edit** → **Delete** |
+
+---
+
+## ANEXO — Instalación en macOS (Apple Silicon / Intel)
+
+> Para practicar localmente en tu Mac. Las entregas del curso se graban en el
+> nodo Ubuntu de AWS Academy; en macOS las versiones pueden variar respecto a
+> las de la guía principal.
+
+Requisito previo (una sola vez): Xcode Command Line Tools y [Homebrew](https://brew.sh).
+
+```bash
+xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+```bash
+brew install asciinema
+asciinema --version
+asciinema rec demo.cast        # Ctrl-D o `exit` para terminar
+```
+
+| Síntoma | Causa / solución |
+|---------|------------------|
+| `brew: command not found` en Apple Silicon | `eval "$(/opt/homebrew/bin/brew shellenv)"` y agrégalo a `~/.zprofile` |
+| La grabación muestra el prompt de zsh con símbolos raros | Usa `asciinema rec -c bash` para grabar con un shell sin temas |

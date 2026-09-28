@@ -286,3 +286,38 @@ iex(1)> "hola mundo" |> String.upcase() |> String.split()
 | `mix` pide Hex | `mix local.hex --force` la primera vez |
 | `mix deps.get` no resuelve nada | Sin conexión o falta Hex: `mix local.hex --force` y reintenta |
 | `iex` no autocompleta módulos del proyecto | Arráncalo con `iex -S mix`, no `iex` a secas |
+
+---
+
+## ANEXO — Instalación en macOS (Apple Silicon / Intel)
+
+> Para practicar localmente en tu Mac. Las entregas del curso se graban en el
+> nodo Ubuntu de AWS Academy; en macOS las versiones pueden variar respecto a
+> las de la guía principal.
+
+Requisito previo (una sola vez): Xcode Command Line Tools y [Homebrew](https://brew.sh).
+
+```bash
+xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+```bash
+brew install elixir            # instala también Erlang como dependencia
+elixir --version
+mix local.hex --force
+iex -e 'IO.puts("hola desde BEAM")'
+```
+
+Para fijar versiones iguales al nodo (Elixir 1.18.5 sobre OTP 26), usa `asdf`
+(ver el anexo de [03_erlang.md](03_erlang.md) para instalar Erlang 26):
+
+```bash
+asdf plugin add elixir
+asdf install elixir 1.18.5-otp-26
+asdf set -u elixir 1.18.5-otp-26
+```
+
+| Síntoma | Causa / solución |
+|---------|------------------|
+| `brew` trae Elixir 1.19+ / OTP 28 | Versión actual de Homebrew; el código del curso corre igual. Usa `asdf` si necesitas paridad exacta |
